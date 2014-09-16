@@ -11,6 +11,38 @@
 
 ;;;============================================================================
 
+(define-library (https://github.com/feeley/crypto rsa)
+
+  (export make-rsa-key-pair
+          public-rsa-key
+          private-rsa-key
+
+          rsa-key=
+
+          rsa-key->list
+          list->rsa-key
+
+          PKCS1-pad
+          PKCS1-unpad
+
+          rsa-encrypt-u8vector
+          rsa-decrypt-u8vector
+
+          make-salt
+          PBKDF1
+          PBKDF2)
+
+  (import (gambit)
+          (https://github.com/feeley/nonneg-integer)
+          (https://github.com/feeley/random)
+          (https://github.com/feeley/base64)
+          (https://github.com/feeley/digest)
+          (https://github.com/feeley/homovector))
+
+  (begin
+
+;;;============================================================================
+
 (declare
   (standard-bindings)
   (extended-bindings)
@@ -330,5 +362,7 @@
                                 (subu8vector t 0 n))
                             lst)))
               (append-u8vectors (reverse lst)))))))
+
+))
 
 ;;;============================================================================
